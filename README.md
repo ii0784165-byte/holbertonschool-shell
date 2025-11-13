@@ -1,2 +1,2 @@
 # holbertonschool-shell
-7 ci chapter
+this is my readme 
