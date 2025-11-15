@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# time with 12 hours
+i=0
+n=60
+while [ $i -le 12 ]
+do if [ $n -eq 60 ]
+     then echo "Hour:" $i 
+        i=$((i+1));n=1
+   fi
+   echo $n
+   ((n++))
+done
