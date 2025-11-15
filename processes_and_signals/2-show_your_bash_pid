@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#Only bash PID
+ps aux | grep bash
