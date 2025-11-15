@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#it got 3 speeds : here , there and gone . It got power of infinity and beyond
+while true;do
+   echo "To infinity and beyond"
+done
