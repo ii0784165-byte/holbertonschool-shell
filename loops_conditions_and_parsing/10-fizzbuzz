@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#fizz for 3 and buzz for 5 and fizzbizz for 15
 for n in {1..100}
 do if [ $((n%15)) -eq 0 ];then
    echo "FizzBuzz"
