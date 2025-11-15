@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+num=1
+while [ $num -le 10 ]
+do
+  if [ $num -eq 4 ]
+  then echo "bad luck";((num++))
+  elif [ $num -eq 8 ]
+  then echo "good luck";((num++))
+  else echo "Best School";((num++))
+  fi
+done
