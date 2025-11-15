@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#this script displays the content of the current directory after the first dash
+for file in * 
+do echo ${file#*-}
+done
