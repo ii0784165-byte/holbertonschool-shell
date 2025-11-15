@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#this code write Best school 10 times by using until
+num=1
+until [ $num -gt 10 ]
+do echo "Best School";((num++))
+done
