@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#this command write Best school 10 times
 num=1
 while [ $num -le 10 ]
 do
