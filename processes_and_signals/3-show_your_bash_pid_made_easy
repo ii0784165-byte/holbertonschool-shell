@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#let me se
+for pid in $(pgrep bash);do
+   echo "$pid bash"
+done
