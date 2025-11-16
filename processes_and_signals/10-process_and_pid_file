@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+#i don't know what am i doing
+PIDFILE="/var/run/myscript.pid"
+echo $$ > PIDFILE
+term_handler(){
+  echo "I hate the kill kommand"
+}
+int_handler(){
+  echo "Y U no love me?!"
+}
+quit_handler(){
+  rm -f "$PIDFILE"
+  exit
+}
+trap term_handler SIGTERM
+trap int_handler SIGINT
+trap quit_handler SIGQUIT
+
+while true
+do
+    echo "To infinity and beyond"
+    sleep 2
+done
