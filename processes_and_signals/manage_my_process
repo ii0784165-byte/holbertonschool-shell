@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# manage_my_process
+# Writes "I am alive!" to /tmp/my_process every 2 seconds.
+# Exits cleanly on SIGTERM or SIGQUIT or SIGINT.
+
+tmpfile="/tmp/my_process"
+
+# Ensure the file exists (touch so tail -f works immediately)
+touch "$tmpfile"
+
+# On SIGTERM/SIGQUIT/SIGINT exit cleanly
+cleanup() {
+    exit 0
+}
+trap cleanup SIGTERM SIGQUIT SIGINT
+
+while true; do
+    echo "I am alive!" >> "$tmpfile"
+    sleep 2
+done

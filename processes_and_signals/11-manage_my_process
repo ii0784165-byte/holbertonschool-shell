@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+# 11-manage_my_process
+# Usage: sudo ./11-manage_my_process {start|stop|restart}
+#
+# Starts/stops/restarts the manage_my_process worker and maintains
+# /var/run/my_process.pid with the worker PID.
+
+PIDFILE="/var/run/my_process.pid"
+# directory of this script (so we can start manage_my_process from this dir)
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+WORKER="$SCRIPT_DIR/manage_my_process"
+
+start() {
+    # Start the worker in background, detached so it keeps running
+    # Use nohup so it won't die if the caller's terminal closes.
+    nohup "$WORKER" >/dev/null 2>&1 &
+    pid=$!
+    # Save pid
+    echo "$pid" > "$PIDFILE"
+    echo "manage_my_process started"
+}
+
+stop() {
+    if [ -f "$PIDFILE" ]; then
+        pid=$(cat "$PIDFILE" 2>/dev/null)
+        # Try to terminate process (polite)
+        if [ -n "$pid" ] && kill -0 "$pid" 2>/dev/null; then
+            kill "$pid" 2>/dev/null
+            # give it a short time to exit nicely
+            sleep 1
+            # if still alive, force kill
+            if kill -0 "$pid" 2>/dev/null; then
+                kill -9 "$pid" 2>/dev/null
+            fi
+        fi
+        rm -f "$PIDFILE"
+    fi
+    echo "manage_my_process stopped"
+}
+
+restart() {
+    stop
+    start
+    echo "manage_my_process restarted"
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        restart
+        ;;
+    *)
+        echo "Usage: manage_my_process {start|stop|restart}"
+        exit 1
+        ;;
+esac
